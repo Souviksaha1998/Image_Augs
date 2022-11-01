@@ -97,7 +97,9 @@ cd Image_augmentations
 - augmentations, if *True*, it will apply those effects.
 - percentage of data should use for augmentation.. 0.5 --> 50% of total data , 0.1 --> 10% of total data
 
-## 🚀 Now, run this file 🚀
+
+
+## 🚀 After saving hyperparameters.ini file, run this command 🚀
 
 ```python
 python mainfile.py --configFile hyperparameters.ini
