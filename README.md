@@ -5,9 +5,15 @@
 ***
 This is a **bounding box level image augmentation tool**, it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
 
-### Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻 
+***
+## Code Starts from here
+***
 
-### Create a virtual environment  🧑🏼‍💻 
+## 👩🏼‍💻 Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻 
+<img src='images\3.jpg>
+
+***
+## 🧑🏼‍💻 Create a virtual environment  🧑🏼‍💻 
 
 ```python
 
@@ -23,13 +29,13 @@ source <your env name>/bin/activate
 
 ```
 
-### Installation (for pip installation) 🚀
+## 🚀 Installation (for pip install) 🚀
 
 ```python
 pip install image_augs
 ```
 
-## After installation 🎯 
+## 🎯 After installation 🎯 
 
 **create a .py script inside your created folder**
 
@@ -69,31 +75,35 @@ dicc = combined.main(folder=saved_folder_name,
 #results will be saved in < your given folder >
 ```
 
-### Github (if you clone the repo from github) 🖥️ 
+## 🖥️ Github (if you clone the repo from github) 🖥️ 
 
-Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo.
+Use github to clone [Image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo.
 
 ```python
 git clone git@github.com:Souviksaha1998/Image_augmentations.git
 cd Image_augmentations
 
 ```
-### change in hyperparameters.ini file  🧑🏼‍💻 
+## 🧑🏼‍💻 change in hyperparameters.ini file  🧑🏼‍💻 
 ***
-**open hyperparameters.ini**
+**open hyperparameters.ini file**
+
+<img src='images\4.jpg'>
+
 - give your source folder name (image annotation folder)
 - destination folder, where you want to save your results , just provide any folder name
 - resize image, default 640. Keep aspect ratio will  keep one side's (Height or width) same according to your resize image
 - train test split of your data
-- augmentations, if True, it will apply those effects.
+- augmentations, if *True*, it will apply those effects.
 - percentage of data should use for augmentation.. 0.5 --> 50% of total data , 0.1 --> 10% of total data
 
-### Now, run this file
+## 🚀 Now, run this file 🚀
 
 ```python
 python mainfile.py --configFile hyperparameters.ini
 #results will be saved in destination folder
 ```
+## Terminal output 🧑🏼‍💻
 <img src='images\1.png'>
 
 ### To view the augmented images
