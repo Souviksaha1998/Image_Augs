@@ -10,7 +10,7 @@ This is a **bounding box level image augmentation tool**, it can perform 14 anno
 ***
 
 ## 👩🏼‍💻 Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻 
-<img src='images\3.jpg>
+<img src='images\3.jpg'>
 
 ***
 ## 🧑🏼‍💻 Create a virtual environment  🧑🏼‍💻 
