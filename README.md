@@ -8,7 +8,7 @@
 
 <img alt="GitHub code size in bytes" src="https://static.pepy.tech/personalized-badge/image-augs?period=total&units=international_system&left_color=black&right_color=brightgreen&left_text=Downloads">
 
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Souviksaha1998/Image_augmentations?style=plastic">
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Souviksaha1998/image_augmentations?style=social">
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/Souviksaha1998?style=plastic">
 
 ***
