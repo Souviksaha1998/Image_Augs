@@ -5,7 +5,12 @@
 
 ***
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Souviksaha1998/Image_augmentations">
-[![Downloads](https://static.pepy.tech/badge/image-augs)](https://pepy.tech/project/image-augs) [![Downloads](https://static.pepy.tech/badge/image-augs/month)](https://pepy.tech/project/image-augs) [![Downloads](https://static.pepy.tech/badge/image-augs/week)](https://pepy.tech/project/image-augs)
+
+<img alt="GitHub code size in bytes" src="https://static.pepy.tech/personalized-badge/image-augs?period=total&units=international_system&left_color=black&right_color=brightgreen&left_text=Downloadsq">
+
+
+
+
 This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
 
 ***
