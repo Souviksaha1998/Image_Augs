@@ -1,7 +1,8 @@
 
 # Image Augmentations 🚀
 ***
-<img src='images\logo.png'>
+![Image 1](images\logo.png)
+
 
 ***
 This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
