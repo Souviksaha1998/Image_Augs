@@ -8,10 +8,10 @@ This is a augemntation tool for Object Detection , Image classification and Inst
 
 ***
 ##  Code Starts from here 
-***
-<img src='images\3.jpg'>
 
 ### 👩🏼‍💻Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻
+***
+<img src='images\3.jpg'>
 
 ### 👩🏼‍💻 Create a virtual environment 👩🏼‍💻
 
@@ -38,7 +38,7 @@ pip install image_augs
 ## After installation 🎯
 ***
 
-**create a .py script inside your created folder**
+**Create a .py script inside your created folder**
 
 **This Script is for OBJECT DETECTION**
 
@@ -257,9 +257,11 @@ classification_aug.augmentations(
     randomShadow=True, randomShadow_f=1.0
 )
 ```
-
+***
 Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo 🖥️
 Use instanceSeg_aug_script.py / classification_aug_script.py / objectDetection_augScript.py according to your needs.
+
+***
 
 
 ## Contributing

@@ -9,3 +9,4 @@ aug_env
 __pycache__
 build
 dist
+image_augs.egg-info
