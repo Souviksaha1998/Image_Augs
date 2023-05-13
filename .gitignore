@@ -1,6 +1,11 @@
+visual_aug.py
+test.py
+test_object_detection_new.py
+mainfile.py
+agmnt.py
+logs
 aug_env
+.vscode
+__pycache__
 build
 dist
-image_augs.egg-info
-mainfile_2.py
-test_file.py

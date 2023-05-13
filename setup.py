@@ -6,6 +6,9 @@ with open('requirements.txt','r') as f:
 
 with open('README.md','r') as li:
     readme = li.read()
+    
+with open('VERSION','r') as li:
+    version = li.read()
 
 classifiers = [
       'Intended Audience :: Developers'
@@ -18,8 +21,8 @@ classifiers = [
 setuptools.setup(
 include_package_data=True,
 name='image_augs',
-version='0.0.2',
-description='This is a bounding box level image augmentation tool.',
+version=version,
+description='Image Augs supports Augmentation for Object Detection , Instance Segmentation and classification tasks.',
 long_description =readme,
 long_description_content_type='text/markdown',
 author='Souvik Saha',

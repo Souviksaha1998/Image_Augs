@@ -1,19 +1,25 @@
+Metadata-Version: 2.1
+Name: image-augs
+Version: 2.3.11
+Summary: Image Augs supports Augmentation for Object Detection , Instance Segmentation and classification tasks.
+Author: Souvik Saha
+Author-email: ssouvik.191@gmail.com
+Keywords: machine_learning,development,data_augmentations
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
 
-# Image Augmentations 🚀
-***
-<img src='images\logo.png'>
+# Image Augmentations
 
-***
-This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
+This is a bounding box level image augmentation tool, it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
 
-***
-##  Code Starts from here 
-***
-<img src='images\3.jpg'>
+### Create a folder first, inside that folder keep your image annotation folder.
 
-### 👩🏼‍💻Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻
-
-### 👩🏼‍💻 Create a virtual environment 👩🏼‍💻
+### Create a virtual environment
 
 ```python
 
@@ -29,14 +35,13 @@ source <your env name>/bin/activate
 
 ```
 
-### Installation (for pip installation) 🚀
+### Installation (for pip installation)
 
 ```python
 pip install image_augs
 ```
 
-## After installation 🎯
-***
+## After installation
 
 **create a .py script inside your created folder**
 
@@ -47,6 +52,10 @@ pip install image_augs
 
 
 from object_detection_new.txt_reader_rect import RectAugmentation
+
+
+
+
 
 ################# image height and width combination  ##################
 
@@ -60,8 +69,8 @@ from object_detection_new.txt_reader_rect import RectAugmentation
 #  image_width  = 'keep_aspect_ratio_False'
 
 # Third combination --> keeping original image height and width
-#  image_height = 'keep_original_image_height'
-#  image_width = 'keep_original_image_width'
+#  image_height = < keep_original_image_height >
+#  image_width = < keep_original_image_width >
 
 
 
@@ -121,13 +130,14 @@ rect_aug.Image_augmentation(annotation_folder,
 
 #results will be saved in < your given folder >
 ```
-***
 
 **This Script is for INSTANCE SEGMENTATION**
 
 ```python
 #import these modules in your created <scriptname>.py file
 from instance_seg.json_reader_poly import PolygonAugmentation
+
+
 
 
 ################# image height and width combination  ##################
@@ -142,12 +152,13 @@ from instance_seg.json_reader_poly import PolygonAugmentation
 #  image_width  = 'keep_aspect_ratio_False'
 
 # Third combination --> keeping original image height and width
-#  image_height = 'keep_original_image_height'
-#  image_width = 'keep_original_image_width'
+#  image_height = < keep_original_image_height >
+#  image_width = < keep_original_image_width >
 
 
 #### yolo ####
 # if yolo False then it will normalize all images and save it as txt , if false augmentations will be saved as json.
+
 
 annotation_folder = 'your data'
 new_aug_saved_folder = 'new saved dataset name'
@@ -203,8 +214,6 @@ im_aug_helper.Image_augmentation(annotation_folder,
                                  
                                  weather_change=True,weather_change_f=0.3)
 #results will be saved in < your given folder >
-***
-
 ```
 
 **This Script is for IMAGE CLASSIFICATION**
@@ -258,8 +267,9 @@ classification_aug.augmentations(
 )
 ```
 
-Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo 🖥️
-Use instanceSeg_aug_script.py / classification_aug_script.py / objectDetection_augScript.py according to your needs.
+Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo.
+
+
 
 
 ## Contributing
