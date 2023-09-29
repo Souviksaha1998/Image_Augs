@@ -16,6 +16,7 @@ from object_detection_new.augmentation_rect import *
 from object_detection_new import utils_poly
 from object_detection_new import yml_writer_poly
 import object_detection_new.logging_util as logging_util
+from utils.data_analyser import DataAnalyser
 
 
 install()
@@ -410,10 +411,10 @@ class RectAugmentation():
                 for index ,classes_name in enumerate(data):
                     self.store_dict[index] = classes_name.rstrip()
                    
-                console.print('[bold green] classes.txt found.. [bold green]')
+                console.print('[bold green] [+] classes.txt found.. [bold green]')
         else:
             shutil.rmtree(self.aug_save_folder_name)
-            raise NotImplementedError('Classes.txt not Found !!')
+            raise NotImplementedError('[-] Classes.txt not Found !!')
         
         # checking json and images are same or not and checking their len too
         if classes_ != []:
@@ -423,6 +424,10 @@ class RectAugmentation():
             else:
                 shutil.rmtree(self.aug_save_folder_name)
                 raise NotImplementedError(f'Images and Txt are not equal , recheck your annotation folder! Total Images : {len(all_images)}  |  Total txt : {len(all_txt)}')
+            
+        ##plotting labels data
+        analyser = DataAnalyser(folder,is_json=False)
+        analyser.analyse()
             
         # checking train is float or not
         if type(train_split) != float:
@@ -567,12 +572,14 @@ class RectAugmentation():
                     console.print('[bold yellow] WARNING [bold yellow] : There is some problem with data , skipping this...')
                     logger.error(f'Test data  problem : {e}')
                    
-        console.print(f'[bold dim cyan] Labels name : [/bold dim cyan] [bold magenta] {list(self.store_dict.values())} [bold magenta]')
+        console.print(f'[bold green] Labels name : [/bold green] [bold magenta] {list(self.store_dict.values())} [bold magenta]')
 
         yml_writer_poly.yaml_writer(len(self.store_dict.keys()),list(self.store_dict.values()),self.aug_save_folder_name)   
 
         with open(f'{self.aug_save_folder_name}/classes.txt','w') as f:
             f.write('\n'.join(list(self.store_dict.values()))) 
+        
+        console.print(f'[bold green] [+] Total augmented images in "{self.train_images_path}" : {len(os.listdir(self.train_images_path))} [bold green]')
       
       
       
@@ -584,8 +591,8 @@ class RectAugmentation():
             elif im.endswith('.jpg'):
                 continue
             else:
-                
-                im_name = im.split('.')[0]
+                # im_name = im.split('.')[0]
+                im_name = os.path.splitext(im)[0]
                 ims = cv2.imread(f'{folder}/{im}')
                 cv2.imwrite(f'{folder}/{im_name}.jpg',ims)
                 os.remove(f'{folder}/{im}')

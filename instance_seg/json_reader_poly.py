@@ -16,7 +16,7 @@ from instance_seg.augment_poly import *
 from instance_seg import utils_poly
 from instance_seg import yml_writer_poly
 import instance_seg.logging_util as logging_util
-
+from utils.data_analyser import DataAnalyser
 
 install()
 console = Console()
@@ -384,6 +384,9 @@ class PolygonAugmentation():
             shutil.rmtree(self.aug_save_folder_name)
             raise ValueError(f'[-] please provide "train split" between "0.5 to 1.0", Your provided train split value is : {train_split}')
 
+        analyser = DataAnalyser(folder,is_json=True)
+        analyser.analyse()
+        
 
         #checking the types here    
         type_1 = { 
@@ -515,9 +518,9 @@ class PolygonAugmentation():
                     logger.error(f'combined augmentation problem : {e}')
                 
                    
-        console.print(f'[bold dim cyan] Labels name : [/bold dim cyan] [bold magenta] {list(self.store_dict.keys())} [bold magenta]')
+        console.print(f'[bold green] Labels name : [/bold green] [bold magenta] {list(self.store_dict.keys())} [bold magenta]')
         yml_writer_poly.yaml_writer(len(self.store_dict.keys()),list(self.store_dict.keys()),self.aug_save_folder_name)      
-      
+        console.print(f'[bold green] [+] Total augmented images in "{self.train_images_path}" : {len(os.listdir(self.train_images_path))} [bold green]')
       
       
       
@@ -530,7 +533,7 @@ class PolygonAugmentation():
                 continue
             else:
                 
-                im_name = im.split('.')[0]
+                im_name = os.path.splitext(im)[0]
                 ims = cv2.imread(f'{folder}/{im}')
                 cv2.imwrite(f'{folder}/{im_name}.jpg',ims)
                 os.remove(f'{folder}/{im}')

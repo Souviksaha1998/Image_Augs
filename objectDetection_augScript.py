@@ -21,9 +21,9 @@ from object_detection_new.txt_reader_rect import RectAugmentation
 
 
 
-annotation_folder = 'test_objectDetection'
-new_aug_saved_folder = 'TEST_DET'
-train_split = 0.90
+annotation_folder = 'test_imges\object_detection'
+new_aug_saved_folder = 'test_imges\object_detection_aug'
+train_split = 0.60
 image_H = 640  #check above for height and width setting
 image_W = 'keep_aspect_ratio'
 

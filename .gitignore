@@ -10,3 +10,5 @@ __pycache__
 build
 dist
 image_augs.egg-info
+test_imges
+plots

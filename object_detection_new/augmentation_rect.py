@@ -29,7 +29,7 @@ class ImageAugmentationBox():
         
         # self.height = height
         
-        console.print('[bold green] [+] Image augmentation Box module loaded....[bold green]')
+        console.print('[bold green] [+] Image augmentation Bounding box module loaded....[bold green]')
         logger.info('Image Augmentation Box module loaded successfully...')
 
    

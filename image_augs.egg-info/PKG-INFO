@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: image-augs
-Version: 2.3.11
+Version: 2.4.18
 Summary: Image Augs supports Augmentation for Object Detection , Instance Segmentation and classification tasks.
 Author: Souvik Saha
 Author-email: ssouvik.191@gmail.com
@@ -13,13 +13,31 @@ Classifier: License :: OSI Approved :: MIT License
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 
-# Image Augmentations
 
-This is a bounding box level image augmentation tool, it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
+# Image Augmentations 🚀
+***
+<img src='images\logo.png'>
 
-### Create a folder first, inside that folder keep your image annotation folder.
+***
+<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/Souviksaha1998/Image_augmentations">
 
-### Create a virtual environment
+<img alt="GitHub code size in bytes" src="https://static.pepy.tech/personalized-badge/image-augs?period=total&units=international_system&left_color=black&right_color=brightgreen&left_text=Downloads">
+
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Souviksaha1998/image_augmentations?style=social">
+<img alt="GitHub followers" src="https://img.shields.io/github/followers/Souviksaha1998?style=plastic">
+
+***
+
+This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
+
+***
+##  Code Starts from here 
+
+### 👩🏼‍💻Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻
+***
+<img src='images\3.jpg'>
+
+### 👩🏼‍💻 Create a virtual environment 👩🏼‍💻
 
 ```python
 
@@ -35,15 +53,16 @@ source <your env name>/bin/activate
 
 ```
 
-### Installation (for pip installation)
+### Installation (for pip installation) 🚀
 
 ```python
 pip install image_augs
 ```
 
-## After installation
+## After installation 🎯
+***
 
-**create a .py script inside your created folder**
+**Create a .py script inside your created folder**
 
 **This Script is for OBJECT DETECTION**
 
@@ -52,10 +71,6 @@ pip install image_augs
 
 
 from object_detection_new.txt_reader_rect import RectAugmentation
-
-
-
-
 
 ################# image height and width combination  ##################
 
@@ -69,8 +84,8 @@ from object_detection_new.txt_reader_rect import RectAugmentation
 #  image_width  = 'keep_aspect_ratio_False'
 
 # Third combination --> keeping original image height and width
-#  image_height = < keep_original_image_height >
-#  image_width = < keep_original_image_width >
+#  image_height = 'keep_original_image_height'
+#  image_width = 'keep_original_image_width'
 
 
 
@@ -130,14 +145,13 @@ rect_aug.Image_augmentation(annotation_folder,
 
 #results will be saved in < your given folder >
 ```
+***
 
 **This Script is for INSTANCE SEGMENTATION**
 
 ```python
 #import these modules in your created <scriptname>.py file
 from instance_seg.json_reader_poly import PolygonAugmentation
-
-
 
 
 ################# image height and width combination  ##################
@@ -152,13 +166,12 @@ from instance_seg.json_reader_poly import PolygonAugmentation
 #  image_width  = 'keep_aspect_ratio_False'
 
 # Third combination --> keeping original image height and width
-#  image_height = < keep_original_image_height >
-#  image_width = < keep_original_image_width >
+#  image_height = 'keep_original_image_height'
+#  image_width = 'keep_original_image_width'
 
 
 #### yolo ####
 # if yolo False then it will normalize all images and save it as txt , if false augmentations will be saved as json.
-
 
 annotation_folder = 'your data'
 new_aug_saved_folder = 'new saved dataset name'
@@ -214,6 +227,8 @@ im_aug_helper.Image_augmentation(annotation_folder,
                                  
                                  weather_change=True,weather_change_f=0.3)
 #results will be saved in < your given folder >
+***
+
 ```
 
 **This Script is for IMAGE CLASSIFICATION**
@@ -266,10 +281,11 @@ classification_aug.augmentations(
     randomShadow=True, randomShadow_f=1.0
 )
 ```
+***
+Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo 🖥️
+Use instanceSeg_aug_script.py / classification_aug_script.py / objectDetection_augScript.py according to your needs.
 
-Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo.
-
-
+***
 
 
 ## Contributing

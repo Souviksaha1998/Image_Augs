@@ -23,8 +23,8 @@ from instance_seg.json_reader_poly import PolygonAugmentation
 # if yolo False then it will normalize all images and save it as txt , if false augmentations will be saved as json.
 
 
-annotation_folder = 'indian_data_together'
-new_aug_saved_folder = 'test_det_1'
+annotation_folder = 'test_imges\instance'
+new_aug_saved_folder = 'test_imges\instance_aug'
 train_split = 0.70
 image_H = 640  #check above for height and width setting
 image_W = 'keep_aspect_ratio'

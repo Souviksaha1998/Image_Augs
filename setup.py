@@ -4,7 +4,7 @@ import setuptools
 with open('requirements.txt','r') as f:
     requirements = f.read().splitlines()
 
-with open('README.md','r') as li:
+with open('README.md','r',encoding="utf8") as li:
     readme = li.read()
     
 with open('VERSION','r') as li:
