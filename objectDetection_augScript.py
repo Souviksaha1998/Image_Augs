@@ -21,8 +21,8 @@ from object_detection_new.txt_reader_rect import RectAugmentation
 
 
 
-annotation_folder = 'test_imges\object_detection'
-new_aug_saved_folder = 'test_imges\object_detection_aug'
+annotation_folder = 'lp_dataset_subset'
+new_aug_saved_folder = 'lp_dataset_subset_new'
 train_split = 0.60
 image_H = 640  #check above for height and width setting
 image_W = 'keep_aspect_ratio'
@@ -50,26 +50,22 @@ rect_aug.Image_augmentation(annotation_folder,
                                  affine=True, affine_f=0.8,
 
                                  brightness=True, brightness_f=0.8,
-                                    
-                                 hue=True, hue_f=0.8,
-
+   
                                  removesaturation=True, removesaturation_f=0.8,
 
                                  contrast=True, contrast_f=0.8,
-
-                                 upflip=True, upflip_f=0.8,
 
                                  shear=True, shear_f=0.8, 
 
                                  rotate90=True, rotate90_f =0.8,
 
-                                 blur_and_noise=True, blur_and_noise_f=0.8,
-
                                  image_cutout = True, image_cutout_f=0.8,
                                     
-                                 mix_aug= True, mix_aug_f=0.8, 
+                                 Hflip= True , Hflip_f= 0.5,
+
+                                 Vflip= True , Vflip_f= 0.5,
                                     
                                  temperature_change= True, temperature_change_f=0.8,  # change color temperature from cool to warm color
 
-                                 weather_change=True,weather_change_f=0.8), # add rain , fog , snow in your images
+                            ), # add rain , fog , snow in your images
                                

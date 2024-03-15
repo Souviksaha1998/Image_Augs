@@ -52,13 +52,15 @@ class DataAnalyser:
             contents = [i.replace("\n", "").strip() for i in contents if i != "\n"]
             return contents
 
-    def plot_graph(self):
-        current_time = str(datetime.datetime.now().strftime("%H:%M:%S")).split(':')
+    def plot_graph(self,save_folder):
+        # current_time = str(datetime.datetime.now().strftime("%H:%M:%S")).split(':')
+        current_time = save_folder
         labels = list(self.data.keys())
         values = list(self.data.values())
         # Create subplots with two columns (for pie chart and bar plot)
         fig, axes = plt.subplots(1, 2, figsize=(18,8))
 
+    
         # Create and save the pie chart
         axes[0].pie(values, labels=labels, autopct='%1.1f%%', startangle=140)
         axes[0].axis('equal')  
@@ -75,13 +77,13 @@ class DataAnalyser:
         plt.tight_layout()
 
         
-        plt.savefig(f'plots/labels_{"_".join(current_time)}.png')
+        plt.savefig(f'plots/{current_time}.png')
 
         # plt.show()
 
-        console.print(f'[bold green] [+] labels distribution plot "labels_{"_".join(current_time)}.png" generated successfully in plots folder [bold green]')
+        # console.print(f'[bold green] [+] labels distribution plot "labels_{"_".join(current_time)}.png" generated successfully in plots folder [bold green]')
 
-    def analyse(self):
+    def analyse(self,save_folder):
         
         if not self.is_json:
           class_labels = self.read_txt_file(self.class_path)
@@ -115,7 +117,7 @@ class DataAnalyser:
                             else:
                                 self.data[class_name] += 1
         
-        self.plot_graph()
+        self.plot_graph(save_folder)
 
 
 if __name__ == '__main__':

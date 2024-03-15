@@ -20,3 +20,5 @@ setuptools
 wheel
 numpy
 seaborn
+streamlit
+imutils

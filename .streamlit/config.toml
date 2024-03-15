@@ -1,0 +1,8 @@
+[server]
+maxUploadSize = 2000
+
+
+[theme]
+base="dark"
+primaryColor="#48ed1f"
+font="monospace"

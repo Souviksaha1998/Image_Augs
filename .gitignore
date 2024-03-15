@@ -12,3 +12,11 @@ dist
 image_augs.egg-info
 test_imges
 plots
+lp_dataset_subset
+plots
+rect_augmentation
+classification_aug_script.py
+instanceSeg_aug_script.py
+objectDetection_augScript.py
+.github/workflows
+aug_env
