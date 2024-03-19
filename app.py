@@ -1,7 +1,7 @@
 import streamlit as st
 
-from object_detection_new.txt_reader_rect import RectAugmentation
-from object_detection_new.augmentation_rect import ImageAugmentationBox
+from object_detection_new import RectAugmentation
+from object_detection_new import ImageAugmentationBox
 from apps.modules import *
 from apps.sessions import sessions
 
@@ -20,7 +20,7 @@ sidebar()
 if st.session_state["project_name"] is not None:
     augmentation_type()
     if st.session_state["model"] is not None:
-        file_upload(st.session_state.project_name.strip(),detection)
+        file_upload(detection)
         if st.session_state["button_pressed"]:
             image_resize()
             split_size()

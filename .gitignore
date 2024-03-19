@@ -19,4 +19,3 @@ classification_aug_script.py
 instanceSeg_aug_script.py
 objectDetection_augScript.py
 .github/workflows
-aug_env

@@ -18,6 +18,7 @@ from utils.load_yaml import load_yaml
 from utils.data_analyser import DataAnalyser
 
 
+
 def view_logo():
     st.set_page_config(
     page_title="Image Augmentations",
@@ -31,8 +32,11 @@ def start_project():
         if project_names is "":
             st.warning("⚠️ Please provide a project name..")
         else:
-            st.session_state.project_name = project_names
-            st.success(f"Successfully saved project name as -- **{st.session_state.project_name}** --")
+            if os.path.exists(project_names):
+                st.warning(f"project name already exist, Please choose a different project name.")
+            else:
+                st.session_state.project_name = project_names
+                st.success(f"Successfully saved project name as -- **{st.session_state.project_name}** --")
 
 
 
@@ -51,66 +55,67 @@ def augmentation_type():
 
 
 
-def file_upload(UPLOADS_DIR,detection):
-    if not os.path.exists(UPLOADS_DIR):
-        os.makedirs(UPLOADS_DIR)
+def file_upload(detection):
+    # print(UPLOADS_DIR)
+    # if not os.path.exists(UPLOADS_DIR) and st.session_state.data_path is not  None :
+    #     os.makedirs(UPLOADS_DIR)
     upload,plot = st.columns([7,5])
     with upload:
-        uploaded_files = st.file_uploader("**Upload Images and Txts**", accept_multiple_files=True, type=["png","jpg","jpeg", "tif","txt"],)
+        # uploaded_files = st.file_uploader("**Upload Images and Txts**", accept_multiple_files=True, type=["png","jpg","jpeg", "tif","txt"],)
+        uploaded_files = st.text_input(label="Enter full Path Of Your Data..")
 
         if st.button("Upload 📤"):
-            
-            if uploaded_files != []: 
-                for uploads in uploaded_files:
-                    image_path = os.path.join(UPLOADS_DIR, uploads.name)
-                    with open(image_path, "wb") as f:
-                        f.write(uploads.getbuffer())
-                
-                
-                st.session_state.button_pressed = True
-                image_format_change(folder=st.session_state.project_name.strip())
-
-                all_images = glob(f"{st.session_state.project_name.strip()}/*.jpg")
-                st.session_state.total_image = len(all_images) # saving total image len
-                all_txt =  list(map(lambda x : os.path.splitext(x)[0] + '.txt',all_images))
-                
-
-                classes_ = glob(f"{st.session_state.project_name.strip()}/classes.txt")
-                if classes_ != []:
-                    with open(classes_[0]) as f:
-                        data = f.readlines()
-                        data = list(map(lambda x : x.replace("\n",""),data))
-                        st.write(f"**Class names : {data}**")
-                    
-                    for image_file, txt_file in zip(all_images, all_txt):
-                        if os.path.exists(image_file) and os.path.exists(txt_file):
-                            pass
-                        else:
-                            st.warning(f"⚠️ Either **{image_file}**  or  **{txt_file}** does not exist.")
-                            st.session_state["button_pressed"] = False
-                    
+            if uploaded_files == "":
+                st.warning("⚠️ Please provide full path..")
+            else: 
+                if os.path.exists(uploaded_files):
+                    st.session_state.data_path = uploaded_files
         
+                    st.session_state.button_pressed = True
+                    image_format_change(folder=st.session_state.data_path)
+
+                    all_images = glob(f"{st.session_state.data_path}/*.jpg")
+                    st.session_state.total_image = len(all_images) # saving total image len
+                    all_txt =  list(map(lambda x : os.path.splitext(x)[0] + '.txt',all_images))
+                    
+
+                    classes_ = glob(f"{st.session_state.data_path}/classes.txt")
+                    if classes_ != []:
+                        with open(classes_[0]) as f:
+                            data = f.readlines()
+                            data = list(map(lambda x : x.replace("\n",""),data))
+                            st.write(f"**Class names : {data}**")
+                        
+                        for image_file, txt_file in zip(all_images, all_txt):
+                            if os.path.exists(image_file) and os.path.exists(txt_file):
+                                pass
+                            else:
+                                st.warning(f"⚠️ Either **{image_file}**  or  **{txt_file}** does not exist.")
+                                st.session_state["button_pressed"] = False
+                        
+            
+                    else:
+                        st.error("⚠️ **classes.txt** not found!!")
+                        st.session_state["button_pressed"] = False
+                    
+                    if st.session_state["button_pressed"]:
+                        st.success(f"🚀 {len(os.listdir(uploaded_files))} file(s) uploaded successfully!")
+                        analyse = DataAnalyser(st.session_state.data_path,is_json=False)
+                        save = f"{st.session_state.project_name.strip()}_{st.session_state.model}"
+                        analyse.analyse(save_folder=save)
+
+                        print(f"upload dir : {st.session_state.data_path}")
+                        ### select a random photo and apply augmentation
+                        RANDOM_IMAGE = random.choice(glob(f"{st.session_state.data_path}/*.jpg"))
+                        BBOX_COOR = get_bbox_coor_by_image(RANDOM_IMAGE,detection)
+
+                        img = Image.open(RANDOM_IMAGE)
+                        st.session_state["random_image"] = img # random selected image
+                        st.session_state["bbox_coor"] = BBOX_COOR # and its box coor
+
                 else:
-                    st.error("⚠️ **classes.txt** not found!!")
-                    st.session_state["button_pressed"] = False
-                
-                if st.session_state["button_pressed"]:
-                    st.success(f"🚀 {len(uploaded_files)} file(s) uploaded successfully!")
-                    analyse = DataAnalyser(st.session_state.project_name.strip(),is_json=False)
-                    save = f"{st.session_state.project_name.strip()}_{st.session_state.model}"
-                    analyse.analyse(save_folder=save)
-
-
-                    ### select a random photo and apply augmentation
-                    RANDOM_IMAGE = random.choice(glob(f"{UPLOADS_DIR}/*.jpg"))
-                    BBOX_COOR = get_bbox_coor_by_image(RANDOM_IMAGE,detection)
-
-                    img = Image.open(RANDOM_IMAGE)
-                    st.session_state["random_image"] = img # random selected image
-                    st.session_state["bbox_coor"] = BBOX_COOR # and its box coor
-
-            else:
-                st.error("No Photos / Txts Uploaded")
+                    st.error("⚠️ Path Does not exist, Please provide full path..")
+                    st.session_state.button_pressed = False
 
     with plot:
         if os.path.exists(f"plots/{st.session_state.project_name.strip()}_{st.session_state.model}.png"):
@@ -195,12 +200,17 @@ def multiselect():
     if st.button("Fire Up augmentations"):
         if options != []:
             st.session_state.selectd_aug = options
-            st.write('**NOTE : IF YOU WANT TO REMOVE ANY AUGMENTATIONS, PLEASE USE "X" ON SELECTED AUGMENTATION (ABOVE), THEN PRESS --FIRE UP AUGMENTATIONS--**')
-        
-        
+            st.session_state.fire_up = True
+
+   
         else:
             st.warning("⚠️ Please select augmentations")
             st.session_state.selectd_aug = None
+            st.session_state.fire_up = False
+        
+    if st.session_state.fire_up:
+        st.info('**NOTE : IF YOU WANT TO REMOVE ANY AUGMENTATIONS, PLEASE USE "X" ON SELECTED AUGMENTATION (ABOVE), THEN PRESS --FIRE UP AUGMENTATIONS--**')
+            
 
 
 
@@ -210,9 +220,10 @@ def boilerplate(function,type='blur',low=0.0,high=10.0,step=0.1,max_limit=10,min
     with aug_col:
             if format is not None:
                 format = format
+
             if show_radio:  
                 status = st.radio(f"Select {type} low and high value ", ('Low Value', 'High Value'))
-
+            # print(value)
             max_val  = st.slider(f"Select {type} level", low, high,step=step,format=format,value=value)
             
 
@@ -232,10 +243,12 @@ def boilerplate(function,type='blur',low=0.0,high=10.0,step=0.1,max_limit=10,min
                 if status == "Low Value":
                     if (max_val) != st.session_state[f'{type}_low']:
                         st.session_state[f'{type}_low'] = max_val
+                        
                 
                 if status == "High Value":
                     if (max_val) != st.session_state[f'{type}_high']:
                         st.session_state[f'{type}_high'] = max_val
+                        
 
             if (max_val) != st.session_state[f'{type}']:
                 st.session_state[f"{type}_im"] = st.session_state.resize_image.copy()
@@ -246,14 +259,21 @@ def boilerplate(function,type='blur',low=0.0,high=10.0,step=0.1,max_limit=10,min
             
             # print
             if st.session_state[f'{type}_low'] != None:
-                st.write(f"{type} starting value : {st.session_state[f'{type}_low']} ")
+                st.write(f":blue[**{type} starting value** : {st.session_state[f'{type}_low']}]")
+                # value = st.session_state[f'{type}_low']
 
             if st.session_state[f'{type}_high'] != None:
-                st.write(f"{type} ending value : {st.session_state[f'{type}_high']} ")
+                st.write(f":green[**{type} ending value** : {st.session_state[f'{type}_high']}]")
+                # value = st.session_state[f'{type}_high']
             
-            percentage = st.slider(f"Fraction of data you want to use for {type} augmentation.",0.0,1.0,value=0.30,step=0.1)
+            percentage = st.slider(f":red[**Fraction of data you want to use for {type} augmentation**]",0.0,1.0,value=0.30,step=0.05)
             st.session_state[f"{type}_%"] = percentage
+            
+            train_len = round(st.session_state.total_image*st.session_state.train_split)
+            data = round(train_len*st.session_state[f"{type}_%"])
 
+            st.info(f"Out of **{train_len}** train images, **{data}** images will affected by {type}.")
+            st.session_state.train_split
 
     with image_col:
             if st.session_state[f"{type}_im"] is None and st.session_state[f'{type}'] is None :
@@ -303,7 +323,7 @@ def combine_user_data():
     with open(yaml_filename, 'w') as yaml_file:
         yaml.dump(data, yaml_file, default_flow_style=False)
 
-    print(f"The configs have been written to {yaml_filename}")
+    # print(f"The configs have been written to {yaml_filename}")
 
 
 
@@ -313,7 +333,7 @@ def annotate():
     im_W = st.session_state['size'][1] # custom size 
     split = st.session_state.train_split # train split
     project_save_folder = f"{st.session_state.project_name.strip()}_{st.session_state.model}" 
-    annotation_folder = st.session_state.project_name.strip()
+    annotation_folder = st.session_state.data_path
     rect_aug = RectAugmentation(project_save_folder)
     rect_aug.Image_augmentation(folder=annotation_folder,
                                 train_split=split,
@@ -353,7 +373,7 @@ def annotate():
     
 
   
-    st.success(f"##### Augmentations saved in --> {project_save_folder} <-- folder")
+    st.success(f"##### Augmentations saved in --> {os.path.basename(os.getcwd())}/{project_save_folder} <-- folder ")
     st.success(f"##### Please refresh the page to start new augmentations..")
 
     
@@ -368,7 +388,6 @@ def annotate():
 
 def cleanup():
     os.remove("config.yaml")
-    shutil.rmtree(st.session_state.project_name.strip())
     shutil.rmtree("rect_augmentation")
     st.session_state.button_pressed = False
     st.session_state.apply = False
@@ -389,6 +408,7 @@ def sidebar():
     if st.session_state.model is not None:
         st.sidebar.write(f"**Augmentation type :** {st.session_state.model}")
         st.sidebar.write(f"**Project Save Directory :** {st.session_state.project_name.strip()}_{st.session_state.model}")
+
 
 def creator_name():
     st.markdown(

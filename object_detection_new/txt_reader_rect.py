@@ -475,12 +475,10 @@ class RectAugmentation():
         
         if train_split == 1.0:
                     shutil.rmtree(f'{self.aug_save_folder_name}/test')
-        # stqdm()
-        # if c value less than equal to train split then we will add those images in training data and rest will go for test data    
-        print(len(all_images[:self.split]))  
+       
         my_bar = st.progress(0, text="Augmenting data..",)      
         for c ,images in enumerate(track(all_images,description='Augmenting Images',total=len(all_images[:self.split]))):
-            my_bar.progress(c+1,text="Augmenting data..")
+            my_bar.progress(int(c /len(all_images) * 100),text="Augmenting data..")
             if c+1 <= self.split:
   
                 try:

@@ -1,0 +1,2 @@
+from object_detection_new.txt_reader_rect import RectAugmentation
+from object_detection_new.augmentation_rect import ImageAugmentationBox

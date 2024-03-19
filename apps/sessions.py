@@ -132,3 +132,5 @@ def sessions():
         st.session_state.project_name = None
         st.session_state.model = None
         st.session_state.total_image = None
+        st.session_state.fire_up = False
+        st.session_state.data_path = None

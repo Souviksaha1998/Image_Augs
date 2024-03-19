@@ -77,7 +77,7 @@ class DataAnalyser:
         plt.tight_layout()
 
         
-        plt.savefig(f'plots/{current_time}.png')
+        plt.savefig(f'plots/{current_time}.png',dpi=200)
 
         # plt.show()
 
