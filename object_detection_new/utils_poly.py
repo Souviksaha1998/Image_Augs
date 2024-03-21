@@ -36,7 +36,7 @@ def create_new_txt(image ,points,train_path_images , train_path_labels):
                     if type(image) == str:
                         image = cv2.imread(image)
 
-                    cv2.imwrite(f'{train_path_images}/{save_name}.jpg',image)
+                    cv2.imwrite(f'{train_path_images}/{save_name}.jpg',image,[cv2.IMWRITE_JPEG_QUALITY, 83])
 
                     with open(txt_path,'a+') as f:
                     

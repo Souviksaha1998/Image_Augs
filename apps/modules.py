@@ -41,28 +41,26 @@ def start_project():
 
 
 def augmentation_type():
-    aug_type = st.selectbox("**Augmentation Type**",
+    aug_type = st.selectbox("**Project Type**",
                      ['Detection', 'Segmentation', 'Classification'],)
     
     if st.button("Continue ➡️"):
         if aug_type == "Detection":  ### exception
             st.session_state.model = aug_type
-            st.success(f"✅ Selected augmentation type  -- **{st.session_state.model}** --")
+            st.success(f"✅ Selected project type  -- **{st.session_state.model}** --")
         else:
-            st.info(f"ℹ️ Selected augmentation type -- **{aug_type}** -- is not supported yet")
+            st.info(f"ℹ️ Selected project type -- **{aug_type}** -- is not supported yet")
             st.session_state.model = None
             
 
 
 
 def file_upload(detection):
-    # print(UPLOADS_DIR)
-    # if not os.path.exists(UPLOADS_DIR) and st.session_state.data_path is not  None :
-    #     os.makedirs(UPLOADS_DIR)
+    
     upload,plot = st.columns([7,5])
     with upload:
         # uploaded_files = st.file_uploader("**Upload Images and Txts**", accept_multiple_files=True, type=["png","jpg","jpeg", "tif","txt"],)
-        uploaded_files = st.text_input(label="Enter full Path Of Your Data..")
+        uploaded_files = st.text_input(label="Enter Full Path Of Your Data..")
 
         if st.button("Upload 📤"):
             if uploaded_files == "":
@@ -164,7 +162,7 @@ def image_resize():
                 st.session_state['resize_image'] = im
 
             if type(val[0]) == int and type(val[1]) == int and val[0] >= 28 and val[1] >= 28:
-                resize_image = cv2.resize(np.array(st.session_state.random_image),(val[0],val[1]))
+                resize_image = cv2.resize(np.array(st.session_state.random_image),(val[0],val[1]),)
                 st.session_state['resize_image'] = resize_image
          
 
@@ -243,11 +241,13 @@ def boilerplate(function,type='blur',low=0.0,high=10.0,step=0.1,max_limit=10,min
                 if status == "Low Value":
                     if (max_val) != st.session_state[f'{type}_low']:
                         st.session_state[f'{type}_low'] = max_val
+                    
                         
                 
                 if status == "High Value":
                     if (max_val) != st.session_state[f'{type}_high']:
                         st.session_state[f'{type}_high'] = max_val
+                    
                         
 
             if (max_val) != st.session_state[f'{type}']:
@@ -259,12 +259,15 @@ def boilerplate(function,type='blur',low=0.0,high=10.0,step=0.1,max_limit=10,min
             
             # print
             if st.session_state[f'{type}_low'] != None:
-                st.write(f":blue[**{type} starting value** : {st.session_state[f'{type}_low']}]")
-                # value = st.session_state[f'{type}_low']
+                st.write(f":blue[**{type} low value** : {st.session_state[f'{type}_low']}]")
+            # else:
+            #     st.warning(f"⚠️ Please select {type}_low value.")
 
             if st.session_state[f'{type}_high'] != None:
-                st.write(f":green[**{type} ending value** : {st.session_state[f'{type}_high']}]")
+                st.write(f":green[**{type} high value** : {st.session_state[f'{type}_high']}]")
                 # value = st.session_state[f'{type}_high']
+            if st.session_state[f'{type}_high'] ==None:
+                st.warning(f"⚠️ Please select {type}_high value.")
             
             percentage = st.slider(f":red[**Fraction of data you want to use for {type} augmentation**]",0.0,1.0,value=0.30,step=0.05)
             st.session_state[f"{type}_%"] = percentage
@@ -406,7 +409,7 @@ def sidebar():
     if st.session_state.project_name is not None:
         st.sidebar.write(f"**Project Name :** {st.session_state.project_name}")
     if st.session_state.model is not None:
-        st.sidebar.write(f"**Augmentation type :** {st.session_state.model}")
+        st.sidebar.write(f"**Project type :** {st.session_state.model}")
         st.sidebar.write(f"**Project Save Directory :** {st.session_state.project_name.strip()}_{st.session_state.model}")
 
 

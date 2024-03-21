@@ -12,22 +12,16 @@
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/Souviksaha1998?style=plastic">
 
 ***
+##  ℹ️ Description:
 
-This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 14 annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations were applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
+This is a augemntation tool for Object Detection , Image classification and Instance Segmentation , it can perform 12+ annotations. The important ones are rotation, affine, zooming in and out, noise, and blur. The augmentations can be applied to a fraction of the data (40 - 50 percent of the images out of 100 can be augmented).When rotating or zooming in and out, the bounding box coordinates will also change as the image is rotated or zoomed.
 
 ***
-##  Code Starts from here 
-
-### 👩🏼‍💻Create a folder first, inside that folder keep your image annotation folder 👩🏼‍💻
-***
-<img src='images\3.jpg'>
-
-### 👩🏼‍💻 Create a virtual environment 👩🏼‍💻
+##  🚀 Let's Start.. 
+#### 👩🏼‍💻 Create a virtual environment (OPTIONAL)
 
 ```python
-
 pip install virtualenv
-#name your environment
 python3 -m venv <your env name>
 
 #activate the environment --> for linux user
@@ -35,246 +29,76 @@ source <your env name>/bin/activate
 
 #activate the environment  --> for windows user
 <your env name>/Source/activate.ps1
-
 ```
 
-### Installation (for pip installation) 🚀
-
+#### 👩🏼‍💻 Clone the repository ⤵️
 ```python
-pip install image_augs
+git clone https://github.com/Souviksaha1998/Image_Augs.git
+cd Image_Augs
+```
+#### 🚀 Install the requirements.txt file
+```python
+pip install -r requirements.txt
 ```
 
-## After installation 🎯
-***
-
-**Create a .py script inside your created folder**
-
-**This Script is for OBJECT DETECTION**
-
+#### 🎯 Next run this..
 ```python
-#import these modules in your created <scriptname>.py file
-
-
-from object_detection_new.txt_reader_rect import RectAugmentation
-
-################# image height and width combination  ##################
-
-# first combination --> for custom image size
-#  image_height = < custom image size > ; 640
-#  image_width = < custom image size > ; 320
-
-
-# second combination --> keep aspect ratio of the image
-#  image_height = 640
-#  image_width  = 'keep_aspect_ratio_False'
-
-# Third combination --> keeping original image height and width
-#  image_height = 'keep_original_image_height'
-#  image_width = 'keep_original_image_width'
-
-
-
-annotation_folder = 'your folder'
-new_aug_saved_folder = 'new saved folder'
-train_split = 0.90
-image_H = 640  #check above for height and width setting
-image_W = 'keep_aspect_ratio'
-
-
-rect_aug = RectAugmentation(new_aug_saved_folder)
-
-rect_aug.Image_augmentation(annotation_folder,
-                                 
-                                train_split=train_split,
-                                 image_height= image_H,
-                                 image_width= image_W,
-
-
-                                 blur=False,  blur_f=0.8,
-
-                                 motionBlur= False , motionBlur_f= 0.8 ,
-
-                                 rotate=False, rotate_f = 0.8, 
-
-                                 noise=False, noise_f=0.8,
-
-                                 perspective=False, perspective_f = 0.8,
-
-                                 affine=False, affine_f=0.8,
-
-                                 brightness=False, brightness_f=0.8,
-                                    
-                                 hue=False, hue_f=0.8,
-
-                                 removesaturation=False, removesaturation_f=0.8,
-
-                                 contrast=False, contrast_f=0.8,
-
-                                 upflip=False, upflip_f=0.8,
-
-                                 shear=False, shear_f=0.8, 
-
-                                 rotate90=False, rotate90_f =0.8,
-
-                                 blur_and_noise=False, blur_and_noise_f=0.8,
-
-                                 image_cutout = False, image_cutout_f=0.8,
-                                    
-                                 mix_aug= False, mix_aug_f=0.8, 
-                                    
-                                 temperature_change= False, temperature_change_f=0.8,  # change color temperature from cool to warm color
-
-                                 weather_change=True,weather_change_f=0.8), # add rain , fog , snow in your images
-                               
-                                
-
-#results will be saved in < your given folder >
+streamlit run app.py
 ```
-***
+#### You'll able to see a inferface like this ⤵️
+<img src='images/interface.png'>
 
-**This Script is for INSTANCE SEGMENTATION**
+## Steps to follow ⤵️
+<img src='images/project_name.png'>
 
-```python
-#import these modules in your created <scriptname>.py file
-from instance_seg.json_reader_poly import PolygonAugmentation
-
-
-################# image height and width combination  ##################
-
-# first combination --> for custom image size
-#  image_height = < custom image size > ; 640
-#  image_width = < custom image size > ; 320
+**Provide a name for the project and click on --***Next***-- and you will see a --***SUCCESS***-- message**
 
 
-# second combination --> keep aspect ratio of the image
-#  image_height = 640
-#  image_width  = 'keep_aspect_ratio_False'
+<img src='images/augs.png'>
 
-# Third combination --> keeping original image height and width
-#  image_height = 'keep_original_image_height'
-#  image_width = 'keep_original_image_width'
+**Select project type ***(FOR NOW ONLY SUPPORTED PROJECT TYPE IS --DETECTION--)*** and click on CONTINUE.**
 
+<img src='images/path.png'>
 
-#### yolo ####
-# if yolo False then it will normalize all images and save it as txt , if false augmentations will be saved as json.
+**You need to provide ***FULL PATH*** of the data ***(RELATIVE PATH WON'T WORK)*****
 
-annotation_folder = 'your data'
-new_aug_saved_folder = 'new saved dataset name'
-train_split = 0.70
-image_H = 640  #check above for height and width setting
-image_W = 'keep_aspect_ratio'
-yolo = True
+<img src='images/resize.png'>
 
+**Resize Image**
 
-im_aug_helper = PolygonAugmentation(aug_save_folder_name=new_aug_saved_folder,
-                                    yolo=yolo)
+<img src='images/split.png'>
 
-im_aug_helper.Image_augmentation(annotation_folder,
-                                 
-                                 train_split=train_split,
-                                 image_height= image_H,
-                                 image_width= image_W,
+**Split into train and test dataset, You will able to see ***TOTAL IMAGES , TRAIN IMAGES , TEST IMAGES*** in numbers.**
+
+<img src='images/effects.png'>
+
+**Select augmentations you want to apply on your images and click ***FIRE UP AUGMENTATIONS*****
 
 
-                                 blur=True,  blur_f=0.8,
+<img src='images/demo.png'>
 
-                                 motionBlur= False , motionBlur_f= 0.5,
-
-                                 rotate=True, rotate_f = 0.8, 
-
-                                 noise=True, noise_f=0.6,
-
-                                 perspective=True, perspective_f = 0.6,
-
-                                 affine=True, affine_f=0.6,
-
-                                 brightness=True, brightness_f=0.6,
-                                    
-                                 hue=True, hue_f=0.6,
-
-                                 removesaturation=True, removesaturation_f=0.6,
-
-                                 contrast=True, contrast_f=0.6,
-
-                                 upflip=True, upflip_f=0.8,
-
-                                 shear=True , shear_f=0.7, 
-
-                                 rotate90=True, rotate90_f =1.0,
-
-                                 blur_and_noise=True, blur_and_noise_f=0.6,
-
-                                 image_cutout = True, image_cutout_f=0.6,
-                                    
-                                 mix_aug=True, mix_aug_f=0.7,
-                                    
-                                 temperature_change=True, temperature_change_f=0.5,
-                                 
-                                 weather_change=True,weather_change_f=0.3)
-#results will be saved in < your given folder >
-***
-
-```
-
-**This Script is for IMAGE CLASSIFICATION**
-
-```python
-#import these modules in your created <scriptname>.py file
-from classification.classification_combined import ImageAugmentHelper
-
-
-### PARAMS ###
-source_folder = '<source folder>'
-aug_saved_folder = '<augmentation saved folder>'
-train_split = 0.5
-image_height = 512
-image_width = 512
-
-classification_aug = ImageAugmentHelper(source_folder=source_folder,
-                                        aug_save_folder_name=aug_saved_folder,
-                                        train_split=train_split,
-                                        height=image_height,
-                                        width=image_width)
-
-
-classification_aug.augmentations(
-
-    save_raw_images=True,
-
-    blur=True, blur_f=1.0,
-
-    noise=True,noise_f=1.0,
-
-    horizontalFlip=True, horizontalFlip_f=1.0,
-
-    brightness=True, brightness_f=1.0,
-
-    contrast=True, contrast_f=1.0,
-
-    hue=True, hue_f=1.0,
-
-    saturation=True, saturation_f=1.0,
-
-    zoom=True, zoom_f=1.0,
-
-    perspective=True, perspective_f=1.0,
-
-    translation=True, translation_f=1.0,
-
-    sharpen=True, sharpen_f=1.0,
+    - LOW VALUE        -> STARTING VALUE OF AN AUGMENTATION.
+    - HIGH VALUE       -> ENDING VALUE OF AUGMENTATION, YOU MUST SELECT A VALUE (LOW TO HIGH WILL ACT AS A RANGE).
+    - FRACTION OF DATA -> YOU SELECTED 0.30 MEANS OUT OF 100 IMAGES RANDOM 30% DATA YOU WILL BE SELECTED FOR A PARTICULAR AUGMENTATION.
+    - INFO             -> YOU WILL ABLE TO SEE, OUT OF TOTAL TRAIN IMAGES HOW MANY IMAGES WILL BE AFFECTED BY A PARTICULAR AUGMENTATION.
     
-    randomShadow=True, randomShadow_f=1.0
-)
-```
-***
-Use github to clone [image_augmentations](https://github.com/Souviksaha1998/Image_augmentations) repo 🖥️
-Use instanceSeg_aug_script.py / classification_aug_script.py / objectDetection_augScript.py according to your needs.
-
+### 🚀 Next, click on - *AUGMENT DATA* -
 ***
 
+## Feedback, Bug Reports, and Support
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Your feedback is invaluable for improving this augmentation tool! If you encounter any issues, have suggestions for new features, or just want to share your experience, please don't hesitate to reach out. Here's how you can get in touch:
+
+### Opening Issues
+
+If you come across a bug or have a feature request, please open an issue on the [GitHub repository](https://github.com/Souviksaha1998/Image_Augs/issues). When opening an issue, try to provide as much detail as possible, including steps to reproduce the problem and any error messages you encountered. This will help us quickly understand and address the issue.
+
+
+### Contributing
+
+We welcome contributions from the community! Whether it's fixing bugs, adding new features, or improving documentation, your contributions help make this tool better for everyone.
+
+Thank you for your support and contributions!
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

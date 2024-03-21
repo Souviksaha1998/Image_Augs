@@ -5,7 +5,7 @@ from imgaug.augmentables.bbs import BoundingBox, BoundingBoxesOnImage
 from rich.console import Console
 from rich.traceback import install
 from rich.progress import track
-import streamlit as st
+from stqdm import stqdm
 
 import json
 import os
@@ -476,9 +476,9 @@ class RectAugmentation():
         if train_split == 1.0:
                     shutil.rmtree(f'{self.aug_save_folder_name}/test')
        
-        my_bar = st.progress(0, text="Augmenting data..",)      
-        for c ,images in enumerate(track(all_images,description='Augmenting Images',total=len(all_images[:self.split]))):
-            my_bar.progress(int(c /len(all_images) * 100),text="Augmenting data..")
+        # my_bar = st.progress(0, text="Augmenting data..",)      
+        for c ,images in enumerate(stqdm(all_images,desc='Augmenting Images (Estimated time will be less)',total=len(all_images))):
+            # my_bar.progress(int(c /len(all_images) * 100),text="Augmenting data..")
             if c+1 <= self.split:
   
                 try:
@@ -527,7 +527,7 @@ class RectAugmentation():
                     logger.error(f'Test data  problem : {e}')
                    
         # console.print(f'[bold green] Labels name : [/bold green] [bold magenta] {list(self.store_dict.values())} [bold magenta]')
-        my_bar.empty()
+        # my_bar.empty()
         yml_writer_poly.yaml_writer(len(self.store_dict.keys()),list(self.store_dict.values()),self.aug_save_folder_name)   
 
         with open(f'{self.aug_save_folder_name}/classes.txt','w') as f:
