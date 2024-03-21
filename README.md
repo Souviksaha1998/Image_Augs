@@ -50,42 +50,43 @@ streamlit run app.py
 
 ## Steps to follow ⤵️
 
-**Provide a name for the project and click on --***Next***-- and you will see a --***SUCCESS***-- message**
+**1. Provide a name for the project and click on --***Next***-- and you will see a --***SUCCESS***-- message**
 
 <img src='images/project_name.png'>
 
 ***
 
-**Select project type ***(FOR NOW ONLY SUPPORTED PROJECT TYPE IS --DETECTION--)*** and click on CONTINUE.**
+**2. Select project type ***(FOR NOW ONLY SUPPORTED PROJECT TYPE IS --DETECTION--)*** and click on CONTINUE.**
 
 <img src='images/augs.png'>
 
 ***
-**You need to provide ***FULL PATH*** of the data ***(RELATIVE PATH WON'T WORK)*****
+**3. You need to provide ***FULL PATH*** of the data ***(RELATIVE PATH WON'T WORK)*****
 
 <img src='images/path.png'>
 
 ***
 
-**Resize Image**
+**4. Resize Image**
 
 <img src='images/resize.png'>
 
 ***
 
 
-**Split into train and test dataset, You will able to see ***TOTAL IMAGES , TRAIN IMAGES , TEST IMAGES*** in numbers.**
+**5. Split into train and test dataset, You will able to see ***TOTAL IMAGES , TRAIN IMAGES , TEST IMAGES*** in numbers.**
 
 <img src='images/split.png'>
 
 ***
 
-**Select augmentations you want to apply on your images and click ***FIRE UP AUGMENTATIONS*****
+**6. Select augmentations you want to apply on your images and click ***FIRE UP AUGMENTATIONS*****
 
 <img src='images/effects.png'>
 
 ***
 
+**7. Augmentation**
 
     - LOW VALUE        -> STARTING VALUE OF AN AUGMENTATION.
     - HIGH VALUE       -> ENDING VALUE OF AUGMENTATION, YOU MUST SELECT A VALUE (LOW TO HIGH WILL ACT AS A RANGE).
