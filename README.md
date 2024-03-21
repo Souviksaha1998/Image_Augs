@@ -49,38 +49,52 @@ streamlit run app.py
 <img src='images/interface.png'>
 
 ## Steps to follow ⤵️
-<img src='images/project_name.png'>
 
 **Provide a name for the project and click on --***Next***-- and you will see a --***SUCCESS***-- message**
 
+<img src='images/project_name.png'>
 
-<img src='images/augs.png'>
+***
 
 **Select project type ***(FOR NOW ONLY SUPPORTED PROJECT TYPE IS --DETECTION--)*** and click on CONTINUE.**
 
-<img src='images/path.png'>
+<img src='images/augs.png'>
 
+***
 **You need to provide ***FULL PATH*** of the data ***(RELATIVE PATH WON'T WORK)*****
 
-<img src='images/resize.png'>
+<img src='images/path.png'>
+
+***
 
 **Resize Image**
 
-<img src='images/split.png'>
+<img src='images/resize.png'>
+
+***
+
 
 **Split into train and test dataset, You will able to see ***TOTAL IMAGES , TRAIN IMAGES , TEST IMAGES*** in numbers.**
 
-<img src='images/effects.png'>
+<img src='images/split.png'>
+
+***
 
 **Select augmentations you want to apply on your images and click ***FIRE UP AUGMENTATIONS*****
 
+<img src='images/effects.png'>
 
-<img src='images/demo.png'>
+***
+
 
     - LOW VALUE        -> STARTING VALUE OF AN AUGMENTATION.
     - HIGH VALUE       -> ENDING VALUE OF AUGMENTATION, YOU MUST SELECT A VALUE (LOW TO HIGH WILL ACT AS A RANGE).
     - FRACTION OF DATA -> YOU SELECTED 0.30 MEANS OUT OF 100 IMAGES RANDOM 30% DATA YOU WILL BE SELECTED FOR A PARTICULAR AUGMENTATION.
     - INFO             -> YOU WILL ABLE TO SEE, OUT OF TOTAL TRAIN IMAGES HOW MANY IMAGES WILL BE AFFECTED BY A PARTICULAR AUGMENTATION.
+
+<img src='images/demo.png'>
+
+***
     
 ### 🚀 Next, click on - *AUGMENT DATA* -
 ***
